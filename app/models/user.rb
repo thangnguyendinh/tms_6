@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   confirmation: true, unless: :password_not_require
   validates :password_confirmation, length: { minimum: 6 }
 
-  has_many :trainees
   def User.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
             BCrypt::Engine.cost

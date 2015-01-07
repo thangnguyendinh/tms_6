@@ -1,0 +1,28 @@
+<% provide(:title, "All Trainees") %>
+<h1>All Trainees</h1>
+<% if current_user.is_suppervisor? %>
+  <%= link_to "Create New Trainee",new_suppervisor_user_path %>
+<%end%>
+<table class="table table-condensed" style="width:50%" align = "center">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name ,[:suppervisor, user] %></td>
+        <td>
+          <% if current_user.is_suppervisor? %>
+            <%= link_to "Edit", edit_suppervisor_user_path(trainee)%>
+            <%= link_to "Delete", suppervisor_user_path(trainee), 
+                  method: :delete, data: {confirm: "You sure?"} %>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>
