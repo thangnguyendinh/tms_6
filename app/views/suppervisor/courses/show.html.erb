@@ -1,0 +1,26 @@
+<% provide(:title, @course.name) %>
+<h1>Course <%= @course.id %></h1>
+<div class="row">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Intruction</th>
+            <th>Subjects of Course</th>
+            <th>Members of Course</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @course.name%> </td>
+            <td><%= @course.instruction %></td>
+            <td>
+              <% @sujects.each do |suject|%>
+                <%= suject.name%><br>
+              <%end%>
+            </td>
+            <td>#</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
