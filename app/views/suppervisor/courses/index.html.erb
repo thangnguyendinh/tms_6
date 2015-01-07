@@ -1,0 +1,32 @@
+<% provide(:title, 'All Courses') %> 
+<h1>All Courses</h1>
+  <h3><%= link_to "New Course", new_suppervisor_course_path %></h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>Course</th>
+    <th>Instruction</th>
+    <th>Action</th>
+    <th>Manage Course</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@courses.each do |course|%>
+      <tr>
+        <td><%= link_to course.name ,[:suppervisor, course]%></td>
+        <td><%= course.instruction %></td>
+        <td>
+          <% if current_user.is_suppervisor?%>
+            <%= link_to "Edit", edit_suppervisor_course_path(course)%>|
+            <%= link_to "Delete", suppervisor_course_path(course), method: :delete, data: {confirm: "You sure?"} %>
+          <%end%>
+        </td>
+        <td>
+        <%= link_to "Start","#",class: "btn btn-large btn-primary"%>
+        <%= link_to "End","#",class: "btn btn-large btn-primary"%>
+        </td>   
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<%= will_paginate%>

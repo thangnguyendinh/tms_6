@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   namespace :suppervisor do
     resources "users"
+    resources "courses"
   end
 end
