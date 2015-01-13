@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources "users"
     resources "courses"
     resources :subjects
+    resources :start_subjects
+    resources :course_subjects
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

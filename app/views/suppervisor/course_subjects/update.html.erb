@@ -1,0 +1,39 @@
+<% provide :title, "Supervisor | Subject's Details" %>
+
+<h1 class="page-header">Subject's Details</h1>
+
+<div class="panel panel-primary">
+  <div class="panel-heading"><h3><%= @course_subject.subject.name %></h3></div>
+    <div class="panel-body">
+      <h4>Lessons</h4>
+      <%= form_tag(suppervisor_course_subject_path, method: "patch") %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @course_subject.subject.lessons.each do |lesson|%>
+  	        <tr>
+  	          <td>
+  	            <%= lesson.name %><br>
+  	          </td>
+              <td>
+                <%= lesson.content %><br>
+              </td>
+  	        </tr>
+  	      <% end %>
+          </tbody>
+        </table>
+        <% case @course_subject.status_subjects %>
+        <% when 0 %>
+          <%= submit_tag 'start' %>
+        <% when 1 %>
+          <%= submit_tag 'ended' %>
+        <% end %>
+    </div>
+  </div>
+</div>
+<p><%= link_to "Back", suppervisor_course_subjects_path %></p>

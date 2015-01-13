@@ -1,0 +1,35 @@
+<% provide(:title, "subjects in course") %>
+<h1>subjects in course</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag(suppervisor_course_subject_path, method: "get") %>
+      <%= select_tag "course_id", options_from_collection_for_select(@courses, "id", "name") %>
+      <%= submit_tag "Filter" %>
+      <% if @course_subjects %>  
+        <table style="width:40%">
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @course_subjects.each do |course_subject| %>
+              <tr>
+                <th><%= link_to course_subject.subject.name, suppervisor_course_subject_path(course_subject), method: :patch %></th>
+                <% case course_subject.status_subjects %>
+                <% when 0 %>
+                  <th> not start </th>
+                <% when 1 %>
+                  <th> started </th>
+                <% when 2 %>
+                  <th> end </th>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %> 
+  </div>
+</div>
